@@ -35,17 +35,18 @@ def snake_game(width=15, height=10, snake_length=3):
 
         action = yield screen, reward
 
+        if game_end:
+            break
+
         new_seg = (snake[0][0] + action[0], snake[0][1] + action[1])
         screen[new_seg[1], new_seg[0]] = 1
+
         snake.insert(0, new_seg)
         if grow:
             grow = False
         else:
             screen[snake[-1][1], snake[-1][0]] = 0
             snake.pop()
-
-        if game_end:
-            break
 
 
 def getFruit(screen, width, height):
