@@ -1,5 +1,5 @@
 import curses
-from game import game
+from snake_game import snake_game
 
 stdscr = curses.initscr()
 curses.cbreak()
@@ -16,8 +16,8 @@ key_actions = {
     curses.KEY_RIGHT: (1, 0)
 }
 
-g = game()
-g.next()
+game = snake_game()
+game.next()
 
 while True:
     try:
@@ -25,7 +25,7 @@ while True:
         if key == ord('q'):
             break
 
-        screen, reward = g.send(key_actions[key])
+        screen, reward = game.send(key_actions[key])
         stdscr.addstr(2, 4, "Reward: "+str(reward))
         screen_y = 5
         for row in screen:

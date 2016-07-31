@@ -4,7 +4,7 @@ import numpy as np
 Fruit = namedtuple('Fruit', ['x', 'y'])
 
 
-def game(width=15, height=10, snake_length=3):
+def snake_game(width=15, height=10, snake_length=3):
     assert width - 2 > snake_length
     action = (-1, 0)
     head_x = width // 2 - snake_length // 2
