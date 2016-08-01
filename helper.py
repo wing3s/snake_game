@@ -5,7 +5,7 @@ from matplotlib import colors
 
 
 def save_image(folder='images'):
-    if 'images' not in os.listdir('.'):
+    if folder not in os.listdir('.'):
         os.mkdir(folder)
     frame_cnt = it.count()
 
@@ -27,3 +27,9 @@ def save_image(folder='images'):
         plt.grid(True)
         plt.axis('off')
         plt.savefig('%s/%05i.png' % (folder, frame_cnt.next()))
+
+
+def save_model(model, name, folder='models'):
+    if folder not in os.listdir('.'):
+        os.mkdir(folder)
+    model.save_weights('%s/%s.h5' % (folder, name))
