@@ -79,7 +79,10 @@ def train_model(model, nb_epochs=1000):
                     for state, action, reward, state_prime in batch:
                         q_vals = model.predict(state[np.newaxis]).flatten()
                         act_idx = POSSIBLE_ACTIONS.index(action)
-                        q_vals[act_idx] = reward + gamma * model.predict(state_prime[np.newaxis]).max(axis=-1)
+                        if reward < 0:
+                            q_vals[act_idx] = reward
+                        else:
+                            q_vals[act_idx] = reward + gamma * model.predict(state_prime[np.newaxis]).max(axis=-1)
                         inputs.append(state)
                         targets.append(q_vals)
                     this_loss = model.train_on_batch(np.array(inputs), np.array(targets))
