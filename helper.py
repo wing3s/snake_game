@@ -32,4 +32,4 @@ def save_image(folder='images'):
 def save_model(model, name, folder='models'):
     if folder not in os.listdir('.'):
         os.mkdir(folder)
-    model.save_weights('%s/%s.h5' % (folder, name))
+    model.save_weights('%s/%s.h5' % (folder, name), overwrite=True)
