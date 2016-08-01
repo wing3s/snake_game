@@ -3,6 +3,7 @@ from keras.layers.normalization import BatchNormalization
 from keras.layers.convolutional import Convolution2D
 from keras.layers.core import Dense, Flatten
 from keras.optimizers import SGD, RMSprop
+import time
 import numpy as np
 from random import sample as rsample
 import itertools as it
@@ -35,7 +36,8 @@ def experience_replay(batch_size):
         memory.append(exp)
 
 
-def train_model(model, nb_epochs=10000):
+def train_model(model, nb_epochs=1000):
+    start_time = time.time()
     batch_size = 32
     epsilon = 1.  # Probability to explore, 0 ~ 1.
     gamma = .8
@@ -50,7 +52,7 @@ def train_model(model, nb_epochs=10000):
 
         if epsilon > .1:
             # fine tune epsilon
-            epsilon -= .9 / (nb_epochs / 2)
+            epsilon -= .9 / (nb_epochs / 1.5)
         loss = .0
 
         try:
@@ -87,7 +89,7 @@ def train_model(model, nb_epochs=10000):
 
         if (i+1) % 10 == 0:
             print 'Epoch %6i/%i, loss: %.6f, epsilon: %.3f' % (i+1, nb_epochs, loss, epsilon)
-    print 'Training completed'
+    print 'Training completed...  %i sec' % (time.time() - start_time)
     return model
 
 
@@ -117,7 +119,7 @@ def play_game(model):
 
 def main():
     model = init_model()
-    trained_model = train_model(model, nb_epochs=10)
+    trained_model = train_model(model, nb_epochs=1000)
     save_model(trained_model, name='snake')
     play_game(trained_model)
 
