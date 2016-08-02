@@ -10,10 +10,10 @@ import itertools as it
 from snake_game import snake_game
 from helper import save_image, save_model
 
-GAME_WIDTH = 12
+GAME_WIDTH = 10
 GAME_HEIGHT = 10
 NB_FRAMES = 4  # Number of frames (i.e., screens) the agent remembers
-POSSIBLE_ACTIONS = ((-1, 0), (1, 0), (0, -1), (0, 1))
+POSSIBLE_ACTIONS = ((-1, 0), (1, 0), (0, -1), (0, 1), (0, 0))
 
 
 def init_model():
@@ -38,7 +38,7 @@ def experience_replay(batch_size):
 
 def train_model(model, nb_epochs=1000):
     start_time = time.time()
-    batch_size = 32
+    batch_size = 64
     epsilon = 1.  # Probability to explore, 0 ~ 1.
     gamma = .8
 
