@@ -19,8 +19,7 @@ POSSIBLE_ACTIONS = ((-1, 0), (1, 0), (0, -1), (0, 1), (0, 0))
 def init_model():
     # Recipe of deep reinforcement learning model
     model = Sequential()
-    model.add(BatchNormalization(axis=1, input_shape=(NB_FRAMES, GAME_HEIGHT, GAME_WIDTH)))
-    model.add(Convolution2D(16, nb_row=3, nb_col=3, activation='relu'))
+    model.add(Convolution2D(16, nb_row=3, nb_col=3, activation='relu', input_shape=(NB_FRAMES, GAME_HEIGHT, GAME_WIDTH)))
     model.add(Convolution2D(32, nb_row=3, nb_col=3, activation='relu'))
     model.add(Flatten())
     model.add(Dense(256, activation='relu'))
@@ -92,7 +91,10 @@ def train_model(model, nb_epochs=1000):
 
         if (i+1) % 10 == 0:
             print 'Epoch %6i/%i, loss: %.6f, epsilon: %.3f' % (i+1, nb_epochs, loss, epsilon)
-    print 'Training completed...  %i sec' % (time.time() - start_time)
+    time_spent = time.time() - start_time
+    mins, secs = divmod(time_spent, 60)
+    hours, mins = divmod(mins, 60)
+    print "Training completed, %d:%02d:%02d" % (hours, mins, secs)
     return model
 
 
