@@ -51,7 +51,7 @@ def train_model(model, nb_epochs=1000):
 
         if epsilon > .1:
             # fine tune epsilon
-            epsilon -= .9 / (nb_epochs / 1.5)
+            epsilon -= .9 / (nb_epochs / 2)
         loss = .0
 
         try:
@@ -66,7 +66,7 @@ def train_model(model, nb_epochs=1000):
                 action = POSSIBLE_ACTIONS[act_idx]
 
                 screen, reward = game.send(action)
-                state_prime = np.roll(state, 1)
+                state_prime = np.roll(state, 1, axis=0)
                 state_prime[0] = screen
                 exp = (state, action, reward, state_prime)
                 state = state_prime
@@ -114,7 +114,7 @@ def play_game(model):
                 frame_cnt.next()
                 act_idx = np.argmax(model.predict(state[np.newaxis]), axis=-1)[0]
                 screen, _ = game.send(POSSIBLE_ACTIONS[act_idx])
-                state = np.roll(state, 1)
+                state = np.roll(state, 1, axis=0)
                 state[0] = screen
                 img_saver.send(screen)
         except StopIteration:
