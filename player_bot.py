@@ -56,7 +56,6 @@ def train_model(model, nb_epochs=1000):
 
         try:
             while True:
-                act_idx = np.random.randint(len(POSSIBLE_ACTIONS))
                 if np.random.random() > epsilon:
                     # use prediction
                     act_idx = np.argmax(model.predict(state[np.newaxis]), axis=-1)[0]
