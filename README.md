@@ -1,6 +1,6 @@
 # Snake Game
 Play classic Nokia snake game by reinforcement learning with Keras. 
-This project is a very good starting point to learn how reinforcement learning works and implementation of deeplearning with Keras.
+This project is a very good starting point to learn how reinforcement learning works and implementation of deep learning with Keras.
 [Keras](https://keras.io) is a high level Python deep learning library based on [Theano](https://github.com/Theano/Theano) or [TensorFlow](https://github.com/tensorflow/tensorflow).
 We use Q-learning to teach snake how to move. This [Q-learning tutorial](http://mnemstudio.org/path-finding-q-learning-tutorial.htm) is a very good material to get the idea how it works.
 
@@ -49,6 +49,7 @@ pip install -r requirements.txt
 python terminal.py
 ```
 Simply move the snake by arrow keys ←, → ↑ ↓.
+
 - 1: snake or wall
 - F: target fruit
 
@@ -56,5 +57,6 @@ Simply move the snake by arrow keys ←, → ↑ ↓.
 
 ## Reference
 This project is inspired by following resources.
+
 - [https://github.com/bitwise-ben/Snake](https://github.com/bitwise-ben/Snake)
 - [https://github.com/farizrahman4u/qlearning4k](https://github.com/farizrahman4u/qlearning4k)
