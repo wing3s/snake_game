@@ -75,17 +75,16 @@ def train_model(model, nb_epochs=1000):
                 if batch:
                     inputs = []
                     targets = []
-                    for state, action, reward, state_prime in batch:
-                        q_vals = model.predict(state[np.newaxis]).flatten()
-                        act_idx = POSSIBLE_ACTIONS.index(action)
-                        if reward < 0:
-                            q_vals[act_idx] = reward
+                    for s, a, r, s_prime in batch:
+                        q_vals = model.predict(s[np.newaxis]).flatten()
+                        a_idx = POSSIBLE_ACTIONS.index(a)
+                        if r < 0:
+                            q_vals[a_idx] = r
                         else:
-                            q_vals[act_idx] = reward + gamma * model.predict(state_prime[np.newaxis]).max(axis=-1)
-                        inputs.append(state)
+                            q_vals[a_idx] = r + gamma * model.predict(s_prime[np.newaxis]).max(axis=-1)
+                        inputs.append(s)
                         targets.append(q_vals)
-                    this_loss = model.train_on_batch(np.array(inputs), np.array(targets))
-                    loss += this_loss
+                    loss += model.train_on_batch(np.array(inputs), np.array(targets))
         except StopIteration:
             pass
 
