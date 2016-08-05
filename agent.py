@@ -59,6 +59,7 @@ class Agent:
         epsilon = 1.  # Probability to explore, 0 ~ 1
         exp_replay = experience_replay(batch_size)
         exp_replay.next()
+        epocs_accu_time = 0
         for i in xrange(nb_epochs):
             start_time = time.time()
             game = self.game(width=self.width, height=self.height)
@@ -105,12 +106,12 @@ class Agent:
                         loss += self.model.train_on_batch(
                             np.array(inputs), np.array(targets))
             except StopIteration:
-                pass
-            time_spent = time.time() - start_time
+                epocs_accu_time += time.time() - start_time
 
             if (i+1) % 10 == 0:
                 print 'Epoch %6i/%i, loss: %.6f, epsilon: %.3f [%is]' % (
-                    i+1, nb_epochs, loss, epsilon, int(time_spent))
+                    i+1, nb_epochs, loss, epsilon, int(epocs_accu_time))
+                epocs_accu_time = 0
 
         if save_model:
             folder = 'models'
