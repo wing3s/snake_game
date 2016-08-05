@@ -29,8 +29,8 @@ def main():
 
     agent = Agent(
         model, nb_frames, snake_game, actions, size=(game_width, game_height))
-    agent.train(nb_epochs=10, batch_size=64, gamma=0.8, save_model=True)
-    agent.play()
+    agent.train(nb_epochs=1000, batch_size=64, gamma=0.8, save_model=True)
+    agent.play(rounds=10)
 
 
 if __name__ == '__main__':
