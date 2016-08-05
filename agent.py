@@ -27,8 +27,7 @@ def save_image(folder='images'):
         os.mkdir(folder)
     frame_cnt = it.count()
 
-    # Nokia screen color style
-    cmap = colors.ListedColormap(['#010101', '#F70403', '#14FF04'])
+    cmap = colors.ListedColormap(['#009688', '#E0F2F1', '#004D40'])
     bounds = [0, 0.25, 0.75, 1]
     norm = colors.BoundaryNorm(bounds, cmap.N)
 
