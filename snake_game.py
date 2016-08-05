@@ -7,6 +7,12 @@ Fruit = namedtuple('Fruit', ['x', 'y'])
 def snake_game(width=15, height=10, snake_length=3):
     assert width - 2 > snake_length
     possible_actions = ((0, 1), (0, -1), (1, 0), (-1, 0), (0, 0))
+    forbidden_actions = {
+        (0, 1): (0, -1),
+        (0, -1): (0, 1),
+        (1, 0): (-1, 0),
+        (-1, 0): (1, 0)
+    }
     action = (-1, 0)
     prev_action = action
     head_x = width // 2 - snake_length // 2
@@ -40,9 +46,7 @@ def snake_game(width=15, height=10, snake_length=3):
 
         if game_end:
             break
-
-        if (sum(action) == 0 or
-            abs(action[0] + prev_action[0]) + abs(action[1] + prev_action[1]) == 0):
+        if sum(action) == 0 or forbidden_actions[action] == prev_action:
             action = prev_action
         else:
             prev_action = action
