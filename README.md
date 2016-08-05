@@ -1,8 +1,14 @@
 # Snake Game
 Play classic Nokia snake game by reinforcement learning with Keras. 
-This project is a very good starting point to learn how reinforcement learning works and implementation of deep learning with Keras.
+This project is a great starting point to learn how reinforcement learning works and implementation of deep learning with Keras.
 [Keras](https://keras.io) is a high level Python deep learning library based on [Theano](https://github.com/Theano/Theano) or [TensorFlow](https://github.com/tensorflow/tensorflow).
-We use Q-learning to teach snake how to move. This [Q-learning tutorial](http://mnemstudio.org/path-finding-q-learning-tutorial.htm) is a very good material to get the idea how it works.
+We use Q-learning to teach snake how to move. This [Q-learning tutorial](http://mnemstudio.org/path-finding-q-learning-tutorial.htm) is an awesome material to get the idea how it works.
+
+<img src="assets/snake_game.gif" height="250" />
+
+
+- [Play the game](#play_the_game)
+- [Train your bot](#train_the_bot)
 
 
 ## Installation
@@ -13,7 +19,7 @@ cd snake_game
 pip install -r requirements.txt
 ```
 
-#### Note
+### Note
 If you have any issue with matplotlib package installation, please follow below steps.
 ##### MacOS with virtualenv (pyenv)
 ```sh
@@ -44,7 +50,10 @@ pyenv activate <your_virtualenv_name>
 pip install -r requirements.txt
 ```
 
-## Play the game
+### Code Structure
+<img src="assets/snake_game_modules.png" height="250" />
+
+## Play the game<a name="play_the_game"></a>
 ```sh
 python terminal.py
 ```
@@ -54,6 +63,12 @@ Simply move the snake by arrow keys ←, → ↑ ↓.
 - F: target fruit
 
 <img src="assets/terminal_example.png" height="250" width="250" />
+
+## Train the bot<a name="train_the_bot"></a>
+```sh
+python run_bot.py
+```
+Trained model is saved to `/models` with its json structure and weights by default.
 
 ## Reference
 This project is inspired by following resources.
