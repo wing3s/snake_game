@@ -122,12 +122,12 @@ class Agent:
             self.model.save_weights(
                 '%s/%s.h5' % (folder, model_name), overwrite=True)
 
-    def play(self, rounds):
+    def play(self, nb_rounds):
         img_saver = save_image()
         img_saver.next()
 
         game_cnt = it.count(1)
-        for i in xrange(rounds):
+        for i in xrange(nb_rounds):
             game = self.game(width=self.width, height=self.height)
             screen, _ = game.next()
             img_saver.send(screen)
